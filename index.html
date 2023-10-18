@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>Ayhan - Perosonal Blog Website</title>
+  <meta name="title" content="Ayhan - Perosonal Blog Website">
+  <meta name="description" content="This is a blog html template made by codewithsadee">
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./logo.svg" type="icon">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./font.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/blog-im.png">
+  <link rel="preload" as="image" href="./assets/images/pattern-2.svg">
+  <link rel="preload" as="image" href="./assets/images/pattern-3.svg">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" width="119" height="37" alt="Wren logo">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="119" height="37" alt="Wren logo">
+          </a>
+
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#home" class="navbar-link hover-1" data-nav-toggler>خانه</a>
+          </li>
+
+          <li>
+            <a href="#topics" class="navbar-link hover-1" data-nav-toggler>برترین ها</a>
+          </li>
+
+          <li>
+            <a href="#featured" class="navbar-link hover-1" data-nav-toggler>تازه ترین ها</a>
+          </li>
+
+          <li>
+            <a href="#recent" class="navbar-link hover-1" data-nav-toggler>آخرین ها</a>
+          </li>
+
+
+        </ul>
+
+        <div class="navbar-bottom">
+
+          
+
+          <ul class="link-list">
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">پروفایل</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1"></a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">افزودن</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">مورد علاقه ها</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">اکانت</a>
+            </li>
+
+            <li>
+              <a href="#" class="navbar-bottom-link hover-1">خروج</a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <p class="copyright-text">
+          Copyright 2023 © Ayhan - Personal Blog Template.
+          Developed by Ayhan Gholizade
+        </p>
+
+      </nav>
+
+      <a href="#" class="btn btn-primary">ثبت نام</a>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" aria-label="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">سلام به وبلاگ من خوش آمدید!</p>
+
+            <h1 class="headline headline-1 section-title">
+              من <span class="span">آیهان قلی زاده هستم</span>
+            </h1>
+
+            <p class="hero-text">
+              من به برنامه نویسی زبان ها پایتون و HTML و CSS و وبلاگ نویسی بسیار علاقه مند هستم و تا کنون 3 سایت طراحی کرده ام که پرسنال می باشند و برای کار ها اختصاصی خودم مورد استفاده قرار گرفته اند اما در این وبلاگ قصد دارم روزانه یا حتی هفتگی مطالبی قرار دهیم همینطور شما می توانید با قراردادن آدرس ایمیل خود از روزمرگی ها وبلاگ من مطلع شوید.
+            </p>
+
+            <div class="input-wrapper">
+
+              <input type="email" name="email_address" placeholder="آدرس ایمیل خود را وارد کنید" required
+                class="input-field" autocomplete="off">
+
+              <button class="btn btn-primary">
+                <span class="span">ثبت</span>
+
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="hero-banner">
+
+            <img src="./assets/images/blog-im.png" width="327" height="490" alt="Wren Clark" class="w-100">
+
+            <img src="./assets/images/pattern-2.svg" width="27" height="26" alt="shape" class="shape shape-1">
+
+            <img src="./assets/images/pattern-3.svg" width="27" height="26" alt="shape" class="shape shape-2">
+
+          </div>
+
+          <img src="./assets/images/shadow-1.svg" width="500" height="800" alt="" class="hero-bg hero-bg-1">
+
+          <img src="./assets/images/shadow-2.svg" width="500" height="500" alt="" class="hero-bg hero-bg-2">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TOPICS
+      -->
+
+      
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer>
+    <div class="container">
+
+      <div class="card footer">
+
+        <div class="section footer-top">
+
+          <div class="footer-brand">
+
+            <a href="#" class="logo">
+              <img src="./assets/images/logo.svg" width="119" height="37" loading="lazy" alt="Wren logo">
+            </a>
+
+            <p class="footer-text">
+              روزمرگی یک پسر نوجوان که ایده ها مختلفی در ذهنش دارد و او زبان برنامه نویسی HTML را از هر زبان برنامه نویسی بیشتر دوست دارند چیست ؟
+            </p>
+
+            <p class="footer-list-title">آدرس ایمیل</p>
+
+            ayhangholizadeh1391@gmail.com <br>
+            <address class="footer-text address">
+            </address>
+
+          </div>
+
+          <div class="footer-list">
+
+            <p class="footer-list-title">برچسب ها</p>
+
+            <ul>
+
+
+
+              <li>
+                <a href="#" class="footer-link hover-2">برنامه نویسی</a>
+              </li>
+
+              <li>
+                <a href="#" class="footer-link hover-2">حیوانات</a>
+              </li>
+
+              <li>
+                <a href="#" class="footer-link hover-2">درسی و امتحانی</a>
+              </li>
+
+              <li>
+                <a href="#" class="footer-link hover-2">غذا و دسر</a>
+              </li>
+
+              <li>
+                <a href="#" class="footer-link hover-2">تیزهوشان</a>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div class="footer-list">
+
+            <p class="footer-list-title">تماس با ما</p>
+
+            <p class="footer-text">
+              با ما تماس بگیرید
+            </p>
+
+            <div class="input-wrapper">
+            </div>
+
+            <div class="input-wrapper">
+
+
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+            </div>
+
+            <a href="tel:+98-920-410-6560" class="btn btn-primary">
+              <span class="span">تماس با ما</span>
+
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+          <p class="copyright">
+            &copy; حقوق کلی این سایت برای <a href="#" class="copyright-link">آیهان قلی زاده</a> محفوظ می باشد
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+                <span class="span">توییتر</span>
+
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+
+                <span class="span">لینکداین</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+
+                <span class="span">اینستاگرام</span>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  
+  <script src="./assets/js/script.js"></script>
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
