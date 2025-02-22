@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جستجوی کتاب</title>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+    
+    <!-- اضافه کردن فونت از Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+
+    <style>
+        /* تنظیم فونت پیش‌فرض برای تمام عناصر صفحه */
+        * {
+            font-family: 'Vazir', sans-serif;
+        }
+
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input:focus {
+            background-color: #fff;
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #777;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>جستجوی کتاب</h1>
+        <input type="text" id="bookInput" placeholder="نام کتاب را وارد کنید">
+        <br>
+        <button onclick="searchBook()">جستجو</button>
+        <p id="result"></p>
+        <p class="note">* در صورتی که کتاب مشابهی پیدا نکردید، نام کتاب را دقیق‌تر وارد کنید.</p>
+    </div>
+
+    <script>
+        const books = ["ریاضی پایه", "ریاضی گسترده", "فارسی هفتم", "ملت عشق", "شازده کوچولو", "قدرت حال", "کیمیاگر", "هنر شفاف اندیشیدن"];
+
+        function searchBook() {
+            const bookName = document.getElementById("bookInput").value.trim();
+            
+            // تنظیمات Fuse.js
+            const options = {
+                includeScore: true,
+                threshold: 0.4, // میزان تحمل برای مشابهت (0.4 یعنی مشابهت نسبتاً زیاد)
+                keys: ["bookName"]
+            };
+            const fuse = new Fuse(books.map(book => ({ bookName: book })), options);
+            const results = fuse.search(bookName);
+            
+            if (results.length > 0) {
+                const foundBooks = results.map(result => result.item.bookName);
+                document.getElementById("result").textContent = `✅ کتاب‌های مشابه: ${foundBooks.join("، ")}`;
+            } else {
+                document.getElementById("result").textContent = "❌ خیر، این کتاب در لیست نیست.";
+            }
+        }
+    </script>
+
+</body>
+</html>
