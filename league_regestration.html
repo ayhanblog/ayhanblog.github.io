@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت‌نام در لیگ بازی فکری</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazir&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Vazir', sans-serif; }
+        body { text-align: center; margin: 0; padding: 0; background-color: #f0f0f0; color: #333; }
+        .container { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; margin: 50px auto; text-align: center; }
+        h1 { font-size: 2rem; color: #333; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 16px; color: #555; margin-bottom: 8px; }
+        input { padding: 12px; width: 80%; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background-color: #fafafa; }
+        input:focus { background-color: #fff; outline: none; border-color: #007bff; }
+        button { padding: 12px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease-in-out; margin: 10px 5px; }
+        button:hover { background-color: #0056b3; }
+        .back-btn { background-color: #6c757d; }
+        .back-btn:hover { background-color: #5a6268; }
+        #result { margin-top: 20px; font-size: 16px; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ثبت‌نام در لیگ بازی فکری</h1>
+        <div class="form-group">
+            <label for="firstName">نام</label>
+            <input type="text" id="firstName" placeholder="نام خود را وارد کنید">
+        </div>
+        <div class="form-group">
+            <label for="lastName">نام خانوادگی</label>
+            <input type="text" id="lastName" placeholder="نام خانوادگی خود را وارد کنید">
+        </div>
+        <div class="form-group">
+            <label for="nationalCode">کد ملی</label>
+            <input type="text" id="nationalCode" placeholder="کد ملی خود را وارد کنید" oninput="checkIfRegistered()">
+        </div>
+        <button onclick="register()">ثبت</button>
+        <button class="back-btn" onclick="window.location.href='index.html'">بازگشت</button>
+        <p id="result"></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN0XZvBkTyloHjFcONykBEyBl_gdQb4Zc",
+            authDomain: "libraryapp-6f57d.firebaseapp.com",
+            projectId: "libraryapp-6f57d",
+            storageBucket: "libraryapp-6f57d.firebasestorage.app",
+            messagingSenderId: "328447424157",
+            appId: "1:328447424157:web:74ebf69fe1207d0238c674"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // چک کردن اینکه کاربر قبلاً ثبت‌نام کرده یا نه
+        async function checkIfRegistered() {
+            const nationalCode = document.getElementById("nationalCode").value.trim();
+            const resultElement = document.getElementById("result");
+
+            if (!nationalCode || !/^\d{10}$/.test(nationalCode)) {
+                return; // اگه کد ملی کامل وارد نشده، چیزی نشون نده
+            }
+
+            try {
+                const existing = await db.collection("participants").where("nationalCode", "==", nationalCode).get();
+                if (!existing.empty) {
+                    window.location.href = "success.html"; // اگه قبلاً ثبت‌نام کرده، بره به صفحه موفقیت
+                }
+            } catch (error) {
+                resultElement.textContent = "❌ خطا در بررسی ثبت‌نام: " + error.message;
+            }
+        }
+
+        async function register() {
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const nationalCode = document.getElementById("nationalCode").value.trim();
+            const resultElement = document.getElementById("result");
+
+            // اعتبارسنجی
+            if (!firstName || !lastName || !nationalCode) {
+                resultElement.textContent = "لطفاً همه فیلدها را پر کنید!";
+                return;
+            }
+
+            // اعتبارسنجی کد ملی (باید 10 رقم باشه)
+            if (!/^\d{10}$/.test(nationalCode)) {
+                resultElement.textContent = "کد ملی باید ۱۰ رقم باشد!";
+                return;
+            }
+
+            try {
+                // چک کردن تکراری بودن کد ملی
+                const existing = await db.collection("participants").where("nationalCode", "==", nationalCode).get();
+                if (!existing.empty) {
+                    resultElement.textContent = "❌ این کاربر قبلاً ثبت شده است!";
+                    return;
+                }
+
+                // ذخیره اطلاعات توی مجموعه participants
+                await db.collection("participants").add({
+                    firstName: firstName,
+                    lastName: lastName,
+                    nationalCode: nationalCode,
+                    registrationTimestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // انتقال به صفحه موفقیت
+                window.location.href = "success.html";
+            } catch (error) {
+                resultElement.textContent = "❌ خطا: " + error.message;
+            }
+        }
+
+        // ثبت با کلید Enter
+        document.getElementById("nationalCode").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") register();
+        });
+    </script>
+</body>
+</html>
